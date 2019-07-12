@@ -13,7 +13,7 @@ public class Account2Service {
 
     @PostMapping("/add1")
     public Account add1(@Validated @RequestBody Account account) {
-        log.info("新增账户: {}", account);
+        log.info("Account2Service.add1: {}", account);
         return account;
     }
 

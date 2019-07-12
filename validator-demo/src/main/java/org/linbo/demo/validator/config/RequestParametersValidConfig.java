@@ -8,11 +8,11 @@ import org.springframework.validation.beanvalidation.MethodValidationPostProcess
  * @author LinBo
  * @date 2019-07-12 15:05
  */
-@Configuration
+//@Configuration
 public class RequestParametersValidConfig {
 
-    @Bean
-    public MethodValidationPostProcessor methodValidationPostProcessor() {
-        return new MethodValidationPostProcessor();
-    }
+//    @Bean
+//    public MethodValidationPostProcessor methodValidationPostProcessor() {
+//        return new MethodValidationPostProcessor();
+//    }
 }
