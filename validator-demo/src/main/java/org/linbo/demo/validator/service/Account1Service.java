@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 /**
+ * 基础实例代码
  *  <p>1、请求参数加上符合JSR-303校验注解</p>
  *  <p>2、请求参数前面加上 @{@link javax.validation.Valid } 注解，或是 @{@link Validated } 注解</p>
  *  <p>3、如果请求参数列表中有 {@link BindingResult }，则springmvc框架不会向外抛异常，默认代码自行处理</p>

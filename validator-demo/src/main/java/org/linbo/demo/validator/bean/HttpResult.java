@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Data
-public class ResultData<T> {
+public class HttpResult<T> {
 
     private String message;
 

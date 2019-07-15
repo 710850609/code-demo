@@ -6,6 +6,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Account2Service 和 Account1Service 比较 @Validated 和 @Valid 的区别： 没有太大区别
+ **/
 @Slf4j
 @RestController
 @RequestMapping("/accounts2")
