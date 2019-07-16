@@ -8,14 +8,25 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>code-demo</name>
     <description>代码片段例子</description>
-
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
-
     <modules>
         <module>validator-demo</module>
         <module>aop-demo</module>
     </modules>
 
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

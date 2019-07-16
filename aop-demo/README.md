@@ -21,7 +21,7 @@ SpringBoot的流行趋势，已经开始走向基于注解的自动化配置，�
 - 切点支持：基于```execution```表达式、某个注解
 - 切面支持：基于```Aspect```
 
-demo例子
+基于```execution```表达式切面例子
 ```java
 @Aspect
 @Component
@@ -39,7 +39,7 @@ public class LoggerHandler {
 }
 ```
 
-简化版demo例子
+简化版例子
 ```java
 @Aspect
 @Component
@@ -54,12 +54,20 @@ public class LoggerHandler {
 }
 ```
 
-#### 1.2.3、通知
-```@org.aspectj.lang.annotation.Aspect```
-
-#### 1.2.4、组织切面
-
-
+基于```annotation```切面例子
+```java
+@Aspect
+@Component
+public class LoggerHandler {
+    
+    @Around("@annotation(bizLog)")
+    public Object around(ProceedingJoinPoint pjp, InterfaceCallLogger bizLog) throws Throwable {
+        // TODO 调用前逻辑
+        pjp.proceed();
+        // TODO 调用后逻辑
+    }
+}
+```
 
 ## 2、使用场景
 ### 1、批量进行拦截处理，调用方法有统一规则的类全名
