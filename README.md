@@ -1,4 +1,6 @@
-# [code-demo](https://github.com/710850609/code-demo)  &middot; [![Build Status](https://travis-ci.org/710850609/code-demo.svg?branch=master)](https://travis-ci.org/710850609/code-demo)
+# [code-demo](https://github.com/710850609/code-demo)
+[![Build Status](https://travis-ci.org/710850609/code-demo.svg?branch=master)](https://travis-ci.org/710850609/code-demo)
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=710850609_code-demo&metric=alert_status)](https://sonarcloud.io/dashboard?id=710850609_code-demo)
 
 <span>Java开发常用代码片段例子</span>
 
