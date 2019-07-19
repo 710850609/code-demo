@@ -8,3 +8,13 @@ jdk:
 
 before_install:
   - chmod +x mvnw
+
+addons:
+  sonarcloud:
+    organization: "710850609"
+    token:
+      secure: "32d3909e0e4734174b163effdfdd4cb52f308047" # encrypted value of your token
+
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
