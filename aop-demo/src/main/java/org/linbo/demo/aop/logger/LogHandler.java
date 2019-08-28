@@ -17,12 +17,9 @@ import java.lang.reflect.Method;
 @Aspect
 @Component
 @Slf4j
-public class LoggerHandler {
-    @Pointcut("execution(* org.linbo.demo.aop.service.*.*(..))")
-    public void log(){}
+public class LogHandler {
 
-//    @Around("execution(* org.linbo.demo.aop.service.*.*(..))")
-    @Around(value = "log()")
+    @Around("execution(* org.linbo.demo.aop.service.*.*(..))")
     public void doLog(ProceedingJoinPoint pjp) throws Throwable {
         long startTime = System.currentTimeMillis();
         Object[] args = pjp.getArgs();
