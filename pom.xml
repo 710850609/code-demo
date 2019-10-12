@@ -12,10 +12,15 @@
         <module>validator-demo</module>
         <module>aop-demo</module>
         <module>pattern-demo</module>
+        <module>threadPool-demo</module>
+        <module>spring-boot-starter-demo/spring-boot-starter-demo</module>
+        <module>spring-boot-starter-demo/spring-boot-starter-demo-test</module>
     </modules>
 
     <properties>
         <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <build>

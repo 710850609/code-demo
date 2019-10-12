@@ -13,19 +13,19 @@ import org.springframework.context.annotation.Configuration;
  * @date 2019-10-11 17:21
  */
 @Configuration
-@EnableConfigurationProperties(DemoProperties.class)
-@ConditionalOnClass(Demo.class)
-@ConditionalOnProperty(prefix = "linbo.demo", value = "open", havingValue = "true", matchIfMissing = true)
-public class DemoAutoConfiguration {
+@EnableConfigurationProperties(DemoClientProperties.class)
+@ConditionalOnClass(DemoClient.class)
+@ConditionalOnProperty(prefix = "linbo.demo-client", value = "open", havingValue = "true", matchIfMissing = true)
+public class DemoClientAutoConfiguration {
 
     @Autowired
-    private DemoProperties demoProperties;
+    private DemoClientProperties demoClientProperties;
 
     @Bean
-    @ConditionalOnMissingBean(Demo.class)
-    public Demo getDemo() {
-        Demo demo = new Demo();
-        demo.setName(demoProperties.getName());
+    @ConditionalOnMissingBean(DemoClient.class)
+    public DemoClient getDemoClient() {
+        DemoClient demo = new DemoClient();
+        demo.setName(demoClientProperties.getName());
         return demo;
     }
 

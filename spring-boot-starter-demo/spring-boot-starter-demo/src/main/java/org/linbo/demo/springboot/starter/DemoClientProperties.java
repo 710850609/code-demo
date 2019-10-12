@@ -6,8 +6,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author LinBo
  * @date 2019-10-11 17:33
  */
-@ConfigurationProperties(prefix = "linbo.demo")
-public class DemoProperties {
+@ConfigurationProperties(prefix = "linbo.demo-client")
+public class DemoClientProperties {
 
     private static final String DEFAULT_NAME =
             "|   \\| __|  \\/  |/ _ \\ \n" +

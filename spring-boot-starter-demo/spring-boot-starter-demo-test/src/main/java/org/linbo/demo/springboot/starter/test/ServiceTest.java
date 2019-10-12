@@ -1,6 +1,6 @@
 package org.linbo.demo.springboot.starter.test;
 
-import org.linbo.demo.springboot.starter.Demo;
+import org.linbo.demo.springboot.starter.DemoClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,14 +13,17 @@ import javax.annotation.PostConstruct;
 @Component
 public class ServiceTest {
 
-    @Autowired
-    private Demo demo;
+    @Autowired(required = false)
+    private DemoClient client;
 
     @PostConstruct
-    public void printName() {
-        String name = demo.getName();
-        System.out.println("org.linbo.demo.springboot.starter.Demo#name: ");
-        System.out.println(name);
-        System.out.println("");
+    public void doAfter() {
+        if (client != null) {
+            client.doRequest();
+        } else {
+            System.out.println();
+            System.out.println("未实例化 " + DemoClient.class.getName());
+            System.out.println();
+        }
     }
 }
