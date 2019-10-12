@@ -12,7 +12,6 @@
         <module>validator-demo</module>
         <module>aop-demo</module>
         <module>pattern-demo</module>
-        <module>threadPool-demo</module>
         <module>spring-boot-starter-demo/spring-boot-starter-demo</module>
         <module>spring-boot-starter-demo/spring-boot-starter-demo-test</module>
     </modules>
