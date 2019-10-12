@@ -4,9 +4,9 @@
 
 <span>Java开发常用代码片段例子</span>
 
-### 1、[JSR-303 参数校验](https://github.com/710850609/code-demo/tree/master/validator-demo)
-### 2、[注解方式的AOP实现](https://github.com/710850609/code-demo/tree/master/aop-demo)
-### 3、[常用设计模式](https://github.com/710850609/code-demo/tree/master/pattern-demo)
+### 1、[JSR-303 参数校验](validator-demo)
+### 2、[注解方式的AOP实现](aop-demo)
+### 3、[常用设计模式](pattern-demo)
 ### 4、[自定义spring-boot-starter](spring-boot-starter-demo/spring-boot-starter-demo/README.md)
 ### 4、[shiro授权鉴权实现](https://github.com/710850609/code-demo/tree/master/auth-shiro-demo)
 
