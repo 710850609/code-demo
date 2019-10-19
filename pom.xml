@@ -15,6 +15,7 @@
         <module>spring-boot-starter-demo/spring-boot-starter-demo</module>
         <module>spring-boot-starter-demo/spring-boot-starter-demo-test</module>
         <module>rsa-demo</module>
+        <module>image-demo</module>
     </modules>
 
     <properties>
