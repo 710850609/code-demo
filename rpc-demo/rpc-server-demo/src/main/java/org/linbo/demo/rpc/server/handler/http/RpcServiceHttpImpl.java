@@ -1,8 +1,8 @@
-package org.linbo.demo.rpc.server.http;
+package org.linbo.demo.rpc.server.handler.http;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.linbo.demo.rpc.server.RpcService;
+import org.linbo.demo.rpc.server.handler.RpcService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

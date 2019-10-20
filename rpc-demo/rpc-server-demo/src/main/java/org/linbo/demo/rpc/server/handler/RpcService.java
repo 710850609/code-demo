@@ -1,4 +1,4 @@
-package org.linbo.demo.rpc.server;
+package org.linbo.demo.rpc.server.handler;
 
 public interface RpcService {
 
