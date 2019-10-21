@@ -155,10 +155,16 @@ public class SymmtricCryptoUtil {
 		String fullAlg = algorithm + "/CBC/PKCS5Padding";
 		// 初始化输入流
 		FileInputStream fileInputStream = new FileInputStream(file);
-		// 初始化cipher
-		byte[] iv = initIv(fullAlg);
-		Cipher cipher = getCipher(keyData, iv, fullAlg, workingMode, mode);
-		return new CipherInputStream(fileInputStream, cipher);
+		try {
+            // 初始化cipher
+            byte[] iv = initIv(fullAlg);
+            Cipher cipher = getCipher(keyData, iv, fullAlg, workingMode, mode);
+            return new CipherInputStream(fileInputStream, cipher);
+        } finally {
+		    if (fileInputStream != null) {
+		        fileInputStream.close();
+            }
+        }
 	}
 
 	/**
@@ -212,10 +218,16 @@ public class SymmtricCryptoUtil {
 		String fullAlg = algorithm + "/CBC/PKCS5Padding";
 		// 初始化输出流
 		FileOutputStream fileOutputStream = new FileOutputStream(file);
-		// 初始化cipher
-		byte[] iv = initIv(fullAlg);
-		Cipher cipher = getCipher(keyData, iv, fullAlg, workingMode, mode);
-		return new CipherOutputStream(fileOutputStream, cipher);
+		try {
+            // 初始化cipher
+            byte[] iv = initIv(fullAlg);
+            Cipher cipher = getCipher(keyData, iv, fullAlg, workingMode, mode);
+            return new CipherOutputStream(fileOutputStream, cipher);
+        } finally {
+		    if (fileOutputStream != null) {
+		        fileOutputStream.close();
+            }
+        }
 	}
 
 	/**

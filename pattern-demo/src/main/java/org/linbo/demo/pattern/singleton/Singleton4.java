@@ -20,7 +20,7 @@ public class Singleton4 {
 	 */
 	public static Singleton4 getInstance() {
 		if (instance == null) {
-			synchronized (Singleton4.class) {
+			synchronized (instance) {
 				if (instance == null) {
 					instance = new Singleton4();
 				}

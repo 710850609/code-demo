@@ -23,6 +23,9 @@ public class Factory {
 	
 	public static void main(String[] args) {
 		PhoneFactory factory = Factory.getPhoneFactory(XiaoMiFactory.ID);
+		if (factory == null) {
+		    throw new RuntimeException("factory is null");
+        }
 		factory.getPhone(Mi6.ID).welcome();
 		
 		factory = Factory.getPhoneFactory(IPhoneFactory.ID);
