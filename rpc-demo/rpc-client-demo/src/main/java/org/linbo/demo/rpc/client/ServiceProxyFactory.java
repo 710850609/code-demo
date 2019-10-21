@@ -77,7 +77,7 @@ public class ServiceProxyFactory implements InitializingBean, FactoryBean<Object
 		// 使用Cglib生成动态代理
 		Enhancer enhancer = new Enhancer();
 		enhancer.setSuperclass(serviceInterface);
-		enhancer.setCallback(new DalServiceProxy());
+		enhancer.setCallback(new ServiceProxy());
 		proxyService = enhancer.create();
 	}
 }

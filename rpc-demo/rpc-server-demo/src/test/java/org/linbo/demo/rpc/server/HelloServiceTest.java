@@ -11,6 +11,5 @@ public class HelloServiceTest {
 
     @Test
     public void testHello() throws InterruptedException {
-        this.wait();
     }
 }
