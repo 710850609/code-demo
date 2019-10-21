@@ -16,7 +16,7 @@
         <module>spring-boot-starter-demo/spring-boot-starter-demo-test</module>
         <module>rsa-demo</module>
         <module>image-demo</module>
-        <module>rpc-demo/rpc-client-demo</module>
+        <!--<module>rpc-demo/rpc-client-demo</module>-->
         <!--<module>rpc-demo/rpc-server-demo</module>-->
     </modules>
 
