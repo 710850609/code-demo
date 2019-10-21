@@ -9,6 +9,7 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class KeyTool {
 
 	public static final String KEY_ALGORITHM = "RSA";
@@ -19,7 +20,7 @@ public class KeyTool {
 
 	private static final String PRIVATE_KEY = "RSAPrivateKey";
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Map<String, Object> keyMap;
 		try {
 			keyMap = initKey();
@@ -29,6 +30,7 @@ public class KeyTool {
 			System.out.println("privateKey: " + privateKey);
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 	}
 
@@ -54,7 +56,7 @@ public class KeyTool {
 
 	public static Map<String, Object> initKey() throws Exception {
 		KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(KEY_ALGORITHM);
-		keyPairGen.initialize(1024);
+		keyPairGen.initialize(2048);
 		KeyPair keyPair = keyPairGen.generateKeyPair();
 		RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
 		RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();

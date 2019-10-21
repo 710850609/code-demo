@@ -29,6 +29,7 @@ public class SignUtilsImpl implements SignUtils {
 	 * @return 签名
 	 * @throws Exception
 	 */
+	@Override
 	public String sign(final String text, final String key,
 			final String algorithm) {
 		final byte[] textBytes = text.getBytes();
@@ -59,6 +60,7 @@ public class SignUtilsImpl implements SignUtils {
 	 * @return 验签通过返回true，不通过返回false
 	 * @throws Exception
 	 */
+    @Override
 	public boolean verify(final String text, final String signText,
 			final String key, final String algorithm) {
 
@@ -74,6 +76,7 @@ public class SignUtilsImpl implements SignUtils {
 	 * @see com.test.common.crypto.alipay.virtualprod.common.crypto.SignUtils#encrypt(String,
 	 *      String, String)
 	 */
+    @Override
 	public String encrypt(String text, String key, String algorithm) {
 
 		byte[] bytes = text.getBytes(); // 待加/解密的数据
@@ -92,6 +95,7 @@ public class SignUtilsImpl implements SignUtils {
 	 * @see com.test.common.crypto.alipay.virtualprod.common.crypto.SignUtils#decrypt(String,
 	 *      String, String)
 	 */
+    @Override
 	public String decrypt(String text, String key, String algorithm) {
 
 		byte[] bytes = Base64.decode(text); // 待加/解密的数据
