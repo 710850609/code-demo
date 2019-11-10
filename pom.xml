@@ -18,6 +18,7 @@
         <module>image-demo</module>
         <!--<module>rpc-demo/rpc-client-demo</module>-->
         <module>rpc-demo/rpc-server-demo</module>
+        <!--<module>auth-security-jwt-demo</module>-->
     </modules>
 
     <properties>
