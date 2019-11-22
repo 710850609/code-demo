@@ -11,4 +11,5 @@
 ### 5、[RSA-加密-解密-生成密钥对](rsa-demo)
 ### 6、[图形相关](image-demo)
 ### 7、[shiro授权鉴权实现](auth-shiro-demo)
-### 8、[分布式序列生成](sequence-demo)
+### 8、[分布式序列生成实现](sequence-demo)
+### 9、[分布式锁实现](lock-demo)
