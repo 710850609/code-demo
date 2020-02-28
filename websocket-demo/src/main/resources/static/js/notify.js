@@ -18,7 +18,7 @@ function notify({title: title, message: message, data: data, click: callback}) {
     var option = {
         body: message,
         tag: '',
-        icon: '/favicon.ico',
+        icon: '',
         data: data
     }
     var notify = new Notification(title, option)

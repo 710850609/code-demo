@@ -3,30 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>聊天</title>
+    <script type="application/javascript">
+        var ws = undefined
+
+        function webSocket(uri, onMessage, onOpen, onError, onClose) {
+            var ws = new WebSocket(uri);
+            ws.onmessage = onMessage
+            ws.onopen = onOpen
+            ws.onerror = onError
+            ws.onclose = onClose
+            return ws
+        }
+
+        function connect() {
+            var uri = document.getElementById("uri").value
+            ws = webSocket(uri, onMessage, onOpen, onError, onClose)
+        }
+        connect()
+    </script>
 </head>
 <body>
     <div>
-        <input id="uri" value="ws://localhost:8800/chart">
-        <button onclick="connect()">连接</button>
-        <label id="connectResult"></label>
+        <label>连接服务</label>
+        <hr/>
+        <div>
+            <input id="uri" value="ws://localhost:8800/chart">
+            <button onclick="connect()">连接</button>
+            <label id="connectResult"></label>
+        </div>
     </div>
+
     <div>
-        <input id="message">
-        <button onclick="send()">发送</button>
+        <label>登录</label>
+        <hr/>
+        <div>
+            <label>用户名：</label>
+            <input id="userName" value="linbo">
+            <button onclick="login()">登录</button>
+        </div>
     </div>
+
     <div>
-        <label id="returnMessage"></label>
+        <label>聊天</label>
+        <hr/>
+        <div>
+            <input id="message">
+            <button onclick="send()">发送</button>
+        </div>
+        <div>
+            <label id="returnMessage"></label>
+        </div>
     </div>
 </body>
 <script src="/js/notify.js"></script>
 <script type="application/javascript">
-    var ws = undefined
-    connect()
-
-    function connect() {
-        var uri = document.getElementById("uri").value
-        ws = webSocket(uri, onMessage, onOpen, onError, onClose)
-    }
 
     function send() {
         var message = document.getElementById("message").value
@@ -69,15 +99,6 @@
         console.log('onClose')
         showConnectionResult('连接关闭')
         console.log(session)
-    }
-
-    function webSocket(uri, onMessage, onOpen, onError, onClose) {
-        var ws = new WebSocket(uri);
-        ws.onmessage = onMessage
-        ws.onopen = onOpen
-        ws.onerror = onError
-        ws.onclose = onClose
-        return ws
     }
 
 </script>

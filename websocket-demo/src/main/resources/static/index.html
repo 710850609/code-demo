@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh">
     <meta charset="UTF-8">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!--<link rel="stylesheet" href="/css/element-ui.css">-->
+    <!-- 先引入 Vue -->
+    <!--<script src="https://unpkg.com/vue/dist/vue.js"></script>-->
+    <script src="/js/vue.js"></script>
+    <!-- 引入组件库 -->
+    <!--<script src="https://unpkg.com/element-ui/lib/index.js"></script>-->
+    <script src="/js/element-ui.js"></script>
+
     <script type="application/javascript">
         function checkPermission() {
             if (!('Notification' in window)) {
@@ -46,8 +56,68 @@
         checkPermission()
     </script>
     <body>
-        <button onclick="notify()">通知</button>
+        <!--<button onclick="notify()">通知</button>
         <audio src="/static/neworder.wav"></audio>
-        <audio id="sound-play" autoplay="true"></audio>
+        <audio id="sound-play" autoplay="true"></audio>-->
+        <div id="app">
+            <el-input v-model="userName" placeholder="请输入用户名"></el-input>
+            <el-button type="primary" @click="login">登入</el-button>
+            <el-button type="primary" @click="logout">登出</el-button>
+        </div>
     </body>
+    <script>
+        new Vue({
+            el: '#app',
+            data: function() {
+                return {
+                    userName: 'linbo',
+                    uri: 'ws://localhost:8800/chart',
+                    channel: null,
+                }
+            },
+            methods: {
+                // 登入
+                login: function () {
+                    var channel = this.channel || this.connect({
+                        uri: this.uri,
+                        onMessage: (e) => {
+                            this.$notify({
+                                title: '通知',
+                                message: e.data
+                            })
+                        },
+                        onOpen: (e) => {
+                            this.$message({
+                                showClose: true,
+                                message: '登录成功',
+                                type: 'success'
+                            })
+                        }
+                    })
+                },
+                // 登出
+                logout: function () {
+                    if (!this.channel) {
+                        this.$message({
+                            type: 'warning',
+                            message: '未登入，无须登出'
+                        })
+                        return
+                    }
+                    this.channel.close()
+                    this.$message('登出成功')
+                    this.channel = null
+                },
+                // 连接
+                connect: function ({uri: uri, onMessage: onMessage, onOpen: onOpen, onError: onError, onClose: onClose}) {
+                    var ws = new WebSocket(uri)
+                    ws.onmessage = onMessage
+                    ws.onopen = onOpen
+                    ws.onerror = onError || function (e) {console.log('ws通讯错误')}
+                    ws.onclose = onClose || function (e) {console.log('ws通道关闭')}
+                    return ws
+                }
+            }
+        })
+    </script>
 </html>
