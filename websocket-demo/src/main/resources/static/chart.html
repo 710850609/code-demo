@@ -32,7 +32,6 @@
         var message = document.getElementById("message").value
         console.log(message)
         ws.send(message)
-        notify({title: 'ttt', message: message, data: {n: '123'}, click: (d) => {console.log(d)}})
     }
 
     function showConnectionResult(msg) {
@@ -46,6 +45,12 @@
     function onMessage(event) {
         console.log('onMessage')
         showReturnMessage(event.data)
+        notify({
+            title: '来信息了',
+            message: event.data,
+            data: {msg: event.data},
+            click: (d) => {console.log(d)}
+        })
     }
 
     function onOpen(event) {

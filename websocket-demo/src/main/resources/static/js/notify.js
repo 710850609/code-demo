@@ -18,13 +18,12 @@ function notify({title: title, message: message, data: data, click: callback}) {
     var option = {
         body: message,
         tag: '',
-        icon: '',
-        data: data | {}
+        icon: '/favicon.ico',
+        data: data
     }
     var notify = new Notification(title, option)
 
     notify.onclick = function(e) {
-        console.log('点击通知')
         callback(e.target.data)
     }
 }
