@@ -5,13 +5,13 @@
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <!--<link rel="stylesheet" href="/css/element-ui.css">-->
     <!-- 先引入 Vue -->
-    <!--<script src="https://unpkg.com/vue/dist/vue.js"></script>-->
-    <script src="/js/vue.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!--<script src="/js/vue.js"></script>-->
     <!-- 引入组件库 -->
-    <!--<script src="https://unpkg.com/element-ui/lib/index.js"></script>-->
-    <script src="/js/element-ui.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!--<script src="/js/element-ui.js"></script>-->
 
-    <script type="application/javascript">
+    <!--<script type="application/javascript">
         function checkPermission() {
             if (!('Notification' in window)) {
                 console.warn("当前浏览器不支持通知功能，请使用Chrome内核等浏览器");
@@ -54,44 +54,186 @@
         }
 
         checkPermission()
-    </script>
+    </script>-->
+    <style>
+        .el-header, .el-footer {
+            background-color: #B3C0D1;
+            color: #333;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .el-aside {
+            background-color: #D3DCE6;
+            color: #333;
+            text-align: center;
+        }
+
+        .el-badge {
+            line-height: 20px;
+            border: 1px black;
+            margin-top: 10px;
+            margin-right: 40px;
+        }
+
+        .el-main {
+            background-color: #E9EEF3;
+            color: #333;
+            text-align: center;
+            /*line-height: 160px;*/
+        }
+
+        body > .el-container {
+            margin-bottom: 40px;
+        }
+
+        .el-container:nth-child(5) .el-aside,
+        .el-container:nth-child(6) .el-aside {
+            line-height: 260px;
+        }
+
+        .el-container:nth-child(7) .el-aside {
+            line-height: 320px;
+        }
+        .el-row {
+            margin-bottom: 20px;
+        }
+        .el-col {
+            border-radius: 4px;
+        }
+        .bg-purple-dark {
+            background: #99a9bf;
+        }
+        .bg-purple {
+            background: #d3dce6;
+        }
+        .bg-purple-light {
+            background: #e5e9f2;
+        }
+        .grid-content {
+            border-radius: 4px;
+            min-height: 36px;
+        }
+        .row-bg {
+            padding: 10px 0;
+            background-color: #f9fafc;
+        }
+
+    </style>
     <body>
-        <!--<button onclick="notify()">通知</button>
-        <audio src="/static/neworder.wav"></audio>
-        <audio id="sound-play" autoplay="true"></audio>-->
         <div id="app">
-            <el-input v-model="userName" placeholder="请输入用户名"></el-input>
-            <el-button type="primary" @click="login">登入</el-button>
-            <el-button type="primary" @click="logout">登出</el-button>
+            <!-- 登录展示 -->
+            <div v-if="!sessionId">
+                <el-row>
+                    <el-col :span="24">
+                        <el-select v-model="ownerId" placeholder="请选择登录名">
+                            <el-option
+                                    v-for="user in userCache"
+                                    :key="user.id"
+                                    :label="user.name"
+                                    :value="user.id"></el-option>
+                        </el-select>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="24">
+                        <el-button type="primary" @click="login">登入</el-button>
+                    </el-col>
+                </el-row>
+            </div>
+
+            <!-- 聊天展示 -->
+            <el-container v-if="sessionId">
+                <el-aside width="200px">
+                    <el-row v-for="u in userList">
+                        <el-col :span="24">
+                            <el-badge :value="u.unreadCount">
+                                <el-button>{{ u.name }}</el-button>
+                            </el-badge>
+                        </el-col>
+                    </el-row>
+                </el-aside>
+                <el-container>
+                    <el-header>
+                        {{ userCache[chartUserId].name }}
+                        <el-button type="danger" @click="logout" style="position: absolute; right: 10px;">登出</el-button>
+                    </el-header>
+                    <el-main v-for="chart in chartList">
+                        <div style="text-align: left" v-if="chart.from != ownerId">
+                            【{{ chart.from | getUserName }}】: {{ chart.message }}
+                        </div>
+                        <div style="text-align: right" v-if="chart.from == ownerId">
+                            {{ chart.message }} :【{{ chart.from | getUserName }}】
+                        </div>
+                    </el-main>
+                    <el-footer>
+                        <div>
+                            <el-input placeholder="请输入内容" v-model="toSendMessage">
+                                <el-button slot="append" type="primary" @click="sendMessage">发送S</el-button>
+                            </el-input>
+                        </div>
+                    </el-footer>
+                </el-container>
+            </el-container>
         </div>
     </body>
     <script>
-        new Vue({
+        var vm = new Vue({
             el: '#app',
             data: function() {
                 return {
                     userName: 'linbo',
                     uri: 'ws://localhost:8800/chart',
                     channel: null,
+                    ownerId: "2",
+                    sessionId: null,
+                    chartUserId: 1,
+                    chartName: '',
+                    toSendMessage: '',
+                    userList: [
+                        {name: '张飞', unreadCount: 1},
+                        {name: '关羽', unreadCount: 105},
+                        {name: '赵四', unreadCount: 10},
+                        {name: '小皮', unreadCount: 99},
+                    ],
+                    chartList: [{from: "1", to: "2", message: '你好', date: '2020-02-20 00:00:00'}, {from: "2", to: "1", message: '你好吖', date: '2020-02-21 00:00:00'}],
+                    userCache: [
+                        {id: "1", name: '张飞'},
+                        {id: "2", name: '小皮'}
+                    ]
                 }
+            },
+            filters: {
+                // 查询用户名
+                getUserName: function (id) {
+                    var name = ''
+                    vm.userCache.forEach((u) => {
+                        if (u.id == id) {
+                            name = u.name
+                        }
+                    })
+                    return name
+                }
+            },
+            mounted: function () {
+                this.channel = this.connect({
+                    uri: this.uri})
             },
             methods: {
                 // 登入
                 login: function () {
-                    var channel = this.channel || this.connect({
+                    if (this.sessionId) {
+                        this.$message({
+                            showClose: true,
+                            message: '已登录'
+                        })
+                        return
+                    }
+                    this.channel = this.connect({
                         uri: this.uri,
                         onMessage: (e) => {
-                            this.$notify({
-                                title: '通知',
-                                message: e.data
-                            })
-                        },
-                        onOpen: (e) => {
-                            this.$message({
-                                showClose: true,
-                                message: '登录成功',
-                                type: 'success'
-                            })
+                            console.log(e.data)
+                            this.sessionId = e.data
                         }
                     })
                 },
@@ -107,12 +249,28 @@
                     this.channel.close()
                     this.$message('登出成功')
                     this.channel = null
+                    this.sessionId = null
+                },
+                // 发送消息
+                sendMessage: function () {
+                    var msgBody = {
+                        from: this.ownerId,
+                        to: this.chartUserId,
+                        message: this.toSendMessage,
+                        date: new Date().getTime()
+                    }
+                    this.chartList.push(msgBody)
+                    this.channel.send(JSON.stringify(msgBody))
+                    this.channel.onmessage = (e) => {
+                        this.chartList.push(JSON.parse(e.data))
+                    }
+                    this.toSendMessage = ''
                 },
                 // 连接
                 connect: function ({uri: uri, onMessage: onMessage, onOpen: onOpen, onError: onError, onClose: onClose}) {
                     var ws = new WebSocket(uri)
                     ws.onmessage = onMessage
-                    ws.onopen = onOpen
+                    ws.onopen = onOpen || function (e) {console.log(e.data)}
                     ws.onerror = onError || function (e) {console.log('ws通讯错误')}
                     ws.onclose = onClose || function (e) {console.log('ws通道关闭')}
                     return ws
