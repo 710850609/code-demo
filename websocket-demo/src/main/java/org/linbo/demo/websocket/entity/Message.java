@@ -2,24 +2,28 @@ package org.linbo.demo.websocket.entity;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class Message {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
-    private String sessionId;
-
     private String cmd;
 
-    private String from;
+    private User session;
 
-    private String to;
+    private User from;
+
+    private User to;
 
     private String message;
 
@@ -36,3 +40,4 @@ public class Message {
 
 
 }
+

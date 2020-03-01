@@ -2,9 +2,15 @@ package org.linbo.demo.websocket.entity;
 
 public interface Cmd {
 
-    public static String LOGIN ="login";
+    /** 登入 */
+    String LOGIN ="login";
 
-    public static String LOGOUT ="logout";
+    /** 登出 */
+    String LOGOUT ="logout";
 
-    public static String CHART = "chart";
+    /** 聊天 */
+    String CHART = "chart";
+
+    /** 通知 */
+    String NOTIFIY = "notify";
 }
