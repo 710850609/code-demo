@@ -139,7 +139,7 @@
                     <span style="color: #99a9bf; font-size: small; display: block">{{ msg.date | dateFormat }}</span>
                     {{ msg.message }} :【{{ msg.from.name }}】
                 </div>
-                <div style="text-align: center" v-if="msg.cmd == 'notify'">
+                <div style="text-align: center" v-if="msg.cmd == 'notify' || msg.cmd == 'login'">
                     <span style="color: #99a9bf; font-size: small">{{ msg.message }}</span>
                 </div>
             </el-main>
@@ -221,7 +221,9 @@
                 this.messageList.push(data)
             },
             doLogin: function (data) {
+                console.log('登录： ' + JSON.stringify(data))
                 this.owner = data.session
+                this.messageList.push(data)
             },
             // 登出
             logout: function () {

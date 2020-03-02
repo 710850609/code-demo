@@ -51,6 +51,7 @@ public class ChartEndpoint {
         Message sessionMsg = Message.builder()
                 .cmd(Cmd.LOGIN)
                 .session(new User(session.getId(), name))
+                .message("当前分配用户名： 【" + name + "】")
                 .date(new Date())
                 .build();
         session.getAsyncRemote().sendText(sessionMsg.toJsonString());
