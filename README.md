@@ -13,3 +13,4 @@
 ### 7、[shiro授权鉴权实现](auth-shiro-demo)
 ### 8、[分布式序列生成实现](sequence-demo)
 ### 9、[分布式锁实现](lock-demo)
+### 10、[WebSocket实现聊天](websocket-demo)
