@@ -22,6 +22,9 @@
         <module>rpc-demo/rpc-server-demo</module>
         <module>mybatis-maker</module>
         <!--<module>auth-security-jwt-demo</module>-->
+        <module>websocket-demo</module>
+        <module>brower-demo</module>
+        <module>javaFx-demo</module>
     </modules>
 
     <properties>
