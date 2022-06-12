@@ -25,6 +25,7 @@
         <module>websocket-demo</module>
         <module>brower-demo</module>
         <module>javaFx-demo</module>
+        <module>mail-demo</module>
     </modules>
 
     <properties>
