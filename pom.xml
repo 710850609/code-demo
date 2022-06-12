@@ -24,8 +24,8 @@
         <!--<module>auth-security-jwt-demo</module>-->
         <module>websocket-demo</module>
         <module>brower-demo</module>
-        <module>javaFx-demo</module>
         <module>mail-demo</module>
+        <module>kafka-demo</module>
     </modules>
 
     <properties>
