@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>循环播放</title>
+</head>
+
+<body>
+    <audio autoplay controls loop style="margin-top: 210px;">
+        <source src="https://sf5-hl-cdn-tos.douyinstatic.com/obj/ies-music/7036238562441956133.mp3" type="audio/mpeg" />
+    </audio>
+</body>
+<script>
+    let audioSrc = new URL(location.href).searchParams.get('src');
+    if (audioSrc) {
+        let audio = document.querySelector('audio');
+        audio.src = audioSrc;
+        audio.play().catch(e => {
+            console.error(`自动播放失败，需要手动点击播放，原因：${e}`)
+        });
+    }
+</script>
+
+</html>
